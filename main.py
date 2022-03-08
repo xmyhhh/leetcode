@@ -8,7 +8,7 @@ if __name__ == '__main__':
     Solution_level = "middle"
 
     # Solution_level = "hard"
-    Solution_num = 5
+    Solution_num = 322
     import_string = "from problem." + Solution_level + " import m" + str(Solution_num) + " as m"
     exec(import_string)
     solution = m.Solution() #编译器报错正常
