@@ -31,21 +31,34 @@ class Solution:
 
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
 
-        dummy = ListNode(0, head)
-        fast = slow = dummy
-        i = 0
-
-        while fast.next:
-            fast = fast.next
-            if i < n:
-                i += 1
+        # dummy = ListNode(0, head)
+        # fast = slow = dummy
+        # i = 0
+        #
+        # while fast.next:
+        #     fast = fast.next
+        #     if i < n:
+        #         i += 1
+        #     else:
+        #         slow = slow.next
+        #
+        # slow.next = slow.next.next
+        #
+        # return dummy.next
+        dummy=ListNode()
+        dummy.next=head
+        fast=dummy
+        slow=dummy
+        i=0
+        while fast:
+            fast=fast.next
+            if i==n+1:
+                slow=slow.next
             else:
-                slow = slow.next
+                i+=1
 
-        slow.next = slow.next.next
-
+        slow.next=slow.next.next
         return dummy.next
-
     def run(self):
         print("run m19")
         l1 = [1, 2, 3, 4, 5]

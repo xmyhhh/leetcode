@@ -39,9 +39,21 @@ class ListNode:
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        import heapq
+        minHeapq = []
+        for list in lists:
+            while list:
+                heapq.heappush(minHeapq, list.val)
+                list = list.next
+        dummy = ListNode()
+        q = dummy
+        while minHeapq:
+            q.next = ListNode(heapq.heappop(minHeapq))
+            q = q.next
+        return dummy.next
 
     def run(self):
-        print("run m21")
+        print("run m23")
         l1 = [1, 2, 4]
         l2 = [1, 3, 4]
         l1_listnode = None
@@ -56,4 +68,4 @@ class Solution:
                 l2_listnode = ListNode(i, l2_listnode)
             else:
                 l2_listnode = ListNode(i)
-        print(self.mergeKLists(l1_listnode, l2_listnode))
+        print(self.mergeKLists([l1_listnode, l2_listnode]))
