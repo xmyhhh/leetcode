@@ -5,10 +5,10 @@ import problem.easy.m9
 if __name__ == '__main__':
     # Solution_level = "easy"
 
-    Solution_level = "middle"
+    # Solution_level = "middle"
 
-    # Solution_level = "hard"
-    Solution_num = 160
+    Solution_level = "hard"
+    Solution_num = 25
     import_string = "from problem." + Solution_level + " import m" + str(Solution_num) + " as m"
     exec(import_string)
     solution = m.Solution() #编译器报错正常
