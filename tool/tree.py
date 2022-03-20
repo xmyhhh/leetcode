@@ -9,26 +9,31 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
+def TreeNodeCreate(val=0, left=None, right=None):
+    if val is not None:
+        return TreeNode(val,left,right)
+    else:
+        return None
 def treeBuild(treeList):
     nodeQueue = queue.Queue()
     i = 0
     alen = len(treeList)
     if treeList:
-        root = TreeNode(treeList[0])
+        root = TreeNodeCreate(treeList[0])
         nodeQueue.put(root)
         i += 1
     while i < alen:
         aNode = nodeQueue.get()
-        node1 = TreeNode(treeList[i])
+        node1 = TreeNodeCreate(treeList[i])
         nodeQueue.put(node1)
         aNode.left = node1
         if i + 1 < alen:
-            node2 = TreeNode(treeList[i + 1])
+            node2 = TreeNodeCreate(treeList[i + 1])
             nodeQueue.put(node2)
             aNode.right = node2
         i += 2
     return root
+
 
 def treeDraw(node):  # 以某个节点为根画图
     def create_graph(G, node, pos={}, x=0, y=0, layer=1):
@@ -44,6 +49,7 @@ def treeDraw(node):  # 以某个节点为根画图
             r_layer = layer + 1
             create_graph(G, node.right, x=r_x, y=r_y, pos=pos, layer=r_layer)
         return (G, pos)
+
     graph = nx.DiGraph()
     graph, pos = create_graph(graph, node)
     fig, ax = plt.subplots(figsize=(8, 10))  # 比例可以根据树的深度适当调节
@@ -51,5 +57,5 @@ def treeDraw(node):  # 以某个节点为根画图
     plt.show()
 
 
-# res = treeBuild(treeList=[5, 3, 6, 2, 4, None, 7])
+# res = treeBuild(treeList=[5,4,6,None,None,3,7])
 # treeDraw(res)

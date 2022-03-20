@@ -5,7 +5,6 @@ from typing import List, Optional
 from tool.tree import *
 
 
-
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
 
@@ -18,7 +17,7 @@ class Solution:
                 return root.right
             aMin = self.getMin(root.right)
             root.val = aMin.val
-            root.rigth = self.deleteNode(root.right, aMin.val)
+            root.right = self.deleteNode(root.right, aMin.val)
 
         if root.val > key:
             root.left = self.deleteNode(root.left, key)
@@ -37,4 +36,4 @@ class Solution:
     def run(self):
         print("run m450")
 
-        print(self.deleteNode(treeBuild([5, 1, 1, 2, 0, 0]), 3))
+        treeDraw(self.deleteNode(treeBuild([5, 3, 6, 2, 4, None, 7]), 3))
