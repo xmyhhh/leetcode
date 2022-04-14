@@ -17,23 +17,28 @@ class InputHelper:
 
 
 # 定义测试样例class
-class sample:
-    def __init__(self):
-        pass
 
 
 # 定义处理函数
-def solver():
-    pass
+def solver(n, m):
+    from itertools import combinations
+    goods = []
+    for i in range(n):
+        goods.append(i + 1)
+    res = list(combinations(goods, m))
+    for re in res:
+        string = ""
+        for item in re:
+            string = string + " " + str(item)
+        string = string[1:]
+
+        print(string)
 
 
 def main(get_input=input):
-    sample_list = []
-    # N,M=map(int,get_input().split())
-    # N = int(get_input())
+    n, m = map(int, get_input().split())
 
-    print(solver())
-    pass
+    solver(n, m)
 
 
 if __name__ == '__main__':

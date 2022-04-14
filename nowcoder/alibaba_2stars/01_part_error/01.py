@@ -17,23 +17,34 @@ class InputHelper:
 
 
 # 定义测试样例class
-class sample:
-    def __init__(self):
-        pass
 
 
 # 定义处理函数
-def solver():
-    pass
+def solver(n, k, goods):
+    hash_dict = {}
+    ans = 0
+    for good in goods:
+        def countDetal(good):
+            res = []
+            for i in range(1, len(good)):
+                res.append(good[i] - good[i - 1])
+            return tuple(res)
+
+        res = countDetal(good)
+        hash_dict[res] = hash_dict.get(res, 0) + 1
+        if hash_dict.get(tuple(map(lambda x: -x, res)), None):
+            ans += hash_dict[tuple(map(lambda x: -x, res))]
+
+    return ans
 
 
 def main(get_input=input):
-    sample_list = []
-    # N,M=map(int,get_input().split())
-    # N = int(get_input())
+    n, k = map(int, get_input().split())
+    goods = []
+    for i in range(n):
+        goods.append(list(map(int, get_input().split())))
 
-    print(solver())
-    pass
+    print(solver(n, k, goods))
 
 
 if __name__ == '__main__':
