@@ -1,4 +1,4 @@
-# number = list(map(int, inputs.split()))  # 把输入直接转成数字
+# number = list(map(int, input().split()))  # 把输入直接转成数字
 
 
 #定义测试样例class
