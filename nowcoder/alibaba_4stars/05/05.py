@@ -20,34 +20,48 @@ class InputHelper:
 
 
 # 定义处理函数
-def solver(ab):
-    res = 0
-    ab.sort(key=lambda x: abs(x[1] - x[0]))
-    maxa = ab[0][0]
-    maxb = ab[0][1]
-    for a, b in ab:
-        if a > b:
-            res = max((b + maxb) / 2, res)
+def solver(a, b, n):
+    min = 0
+
+    detal = list(map(lambda x: abs(x[0] - x[1]), zip(a, b)))
+    a, b, detal = zip(*list(sorted(zip(a, b, detal), key=lambda x: x[2])))
+    maxa = a[0]
+    maxb = b[0]
+    if n == 2:
+        return max(sum(a) / 2, sum(b) / 2)
+    for j in range(1, n):
+
+        if a[j] < b[j]:
+            min = max(min, (a[j] + maxa) / 2)
         else:
-            res = max((a + maxa) / 2, res)
-        if a > maxa:
-            maxa = a
-        if b > maxb:
-            maxb = b
-    print(res)
+            min = max(min, (b[j] + maxb) / 2)
+
+        if maxa < a[j]:
+            maxa = a[j]
+        if maxb < b[j]:
+            maxb = b[j]
+    return min
+    pass
 
 
 def main(get_input=input):
-    n = int(get_input())
+    A_list = []
+    B_list = []
+    N = int(get_input())
 
-    ab = []
-    for i in range(n):
-        ab.append(list(map(int, get_input().split())))
-    solver(ab)
+    # 处理输入生成测试样例list
+    for i in range(N):
+        number = list(map(int, get_input().split()))
+        A_list.append(number[0])
+        B_list.append(number[1])
+    # 逐个处理测试样例
+
+    print(solver(A_list, B_list, N))
 
 
 if __name__ == '__main__':
     using_input_helper = True
+    # using_input_helper = False
     if using_input_helper:
         inputHelper = InputHelper()
         cProfile.run("main(inputHelper.getInput)")  # test with performance monitor
