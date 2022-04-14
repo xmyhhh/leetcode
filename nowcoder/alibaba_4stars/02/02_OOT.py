@@ -1,6 +1,17 @@
 # number = list(map(int, input().split()))  # 把输入直接转成数字
+import cProfile
 
 MOD = 1000000007
+# 定义input辅助函数（从文件加载模拟输入）
+class InputHelper:
+    def __init__(self, path="./input_data.txt"):
+        with open(path) as file:
+            self.lines = file.readlines()
+        self.currentLine = -1
+
+    def getInput(self):
+        self.currentLine += 1
+        return self.lines[self.currentLine]
 
 
 # 定义测试样例class
@@ -10,7 +21,7 @@ class sample:
         self.B = B
         self.n = n
 
-
+# 定义处理函数
 # 定义处理函数
 # def solver(A, B, n):
 #
@@ -56,14 +67,30 @@ def solver(a, b, n):
     return (res[0][0] * a + res[0][1] * 2) % MOD
 
 
-sample_list = []
-N = int(input())
+def main(get_input=input):
+    sample_list = []
+    N = int(get_input())
 
-# 处理输入生成测试样例list
-for i in range(N):
-    number = list(map(int, input().split()))
-    sample_list.append(sample(number[0], number[1], number[2]))
+    # 处理输入生成测试样例list
+    for i in range(N):
+        number = list(map(int, get_input().split()))
+        sample_list.append(sample(number[0], number[1], number[2]))
 
-# 逐个处理测试样例
-for item in sample_list:
-    print(solver(item.A, item.B, item.n))
+    # 逐个处理测试样例
+    for item in sample_list:
+        print(solver(item.A, item.B, item.n))
+
+    # 逐个处理测试样例
+    for item in sample_list:
+        print(solver(item.A, item.B, item.n))
+
+
+if __name__ == '__main__':
+    using_input_helper=True
+    if using_input_helper:
+        inputHelper=InputHelper()
+        cProfile.run("main(inputHelper.getInput)")  #test with performance monitor
+        # main(inputHelper.getInput)  #test without performance monitor
+    else:
+        # cProfile.run("main()")  #test with performance monitor
+        main()  # test without performance monitor

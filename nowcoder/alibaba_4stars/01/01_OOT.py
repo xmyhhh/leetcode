@@ -1,6 +1,6 @@
 # number = list(map(int, input().split()))  # 把输入直接转成数字
 import cProfile
-MOD = 1000000007
+
 
 # 定义input辅助函数（从文件加载模拟输入）
 class InputHelper:
@@ -43,16 +43,16 @@ def solver(goodsNums, goods_list1, goods_list2):
     return Longest_Incremental_Subsequence(list2)
 
 
-def main(get_input=input):
+def main(input_function=input):
     sample_list = []
 
-    N = int(get_input())
+    N = int(input_function())
 
     # 处理输入生成测试样例list
     for i in range(N):
-        goodsNums = int(get_input())
-        goods_list1 = list(map(int, get_input().split()))
-        goods_list2 = list(map(int, get_input().split()))
+        goodsNums = int(input_function())
+        goods_list1 = list(map(int, input_function().split()))
+        goods_list2 = list(map(int, input_function().split()))
         sample_list.append(sample(goodsNums, goods_list1, goods_list2))
 
     # 逐个处理测试样例
