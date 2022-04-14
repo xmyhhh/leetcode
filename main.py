@@ -1,5 +1,3 @@
-import problem.easy.m9
-
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
@@ -9,7 +7,7 @@ if __name__ == '__main__':
 
     # Solution_level = "hard"
     Solution_num = "46"
-    import_string = "from problem." + Solution_level + " import m" + str(Solution_num) + " as m"
+    import_string = "from leetcode." + Solution_level + " import m" + str(Solution_num) + " as m"
     exec(import_string)
     solution = m.Solution() #编译器报错正常
     solution.run()
