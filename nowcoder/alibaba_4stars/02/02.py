@@ -2,6 +2,8 @@
 import cProfile
 
 MOD = 1000000007
+
+
 # 定义input辅助函数（从文件加载模拟输入）
 class InputHelper:
     def __init__(self, path="./input_data.txt"):
@@ -21,25 +23,34 @@ class sample:
         self.B = B
         self.n = n
 
+
 # 定义处理函数
+def solver(a, b, n):
+    def matrix_mul(ma, mb):
+        ans = [[0] * 2 for _ in range(2)]
+        for i in range(2):
+            for j in range(2):
+                ans[i][j] = ma[i][0] * mb[0][j] + ma[i][1] * mb[1][j]
+                if ans[i][j] >= 0:
+                    ans[i][j] %= MOD
+                else:
+                    ans[i][j] = - (abs(ans[i][j]) % MOD)
+        return ans
 
-def solver(A, B, n):
+    def matrix_pow(matrix, n):
+        ans = [[1, 0], [0, 1]]
+        while n > 0:
+            if n & 1 != 0:
+                ans = matrix_mul(ans, matrix)
+            n >>= 1
+            matrix = matrix_mul(matrix, matrix)
+        return ans
 
-
-    num_0 = 2
-    num_1 = A
     if n == 1:
-        return num_1
-    if n == 0:
-        return num_0
-    for i in range(2, n):
-        a = num_1
-        num_1 = A * num_1 - B * num_0
-        num_0 = a
-
-    return (A * num_1 - B * num_0) % MOD
-
-
+        return a
+    matrix = [[a, -b], [1, 0]]
+    res = matrix_pow(matrix, n - 1)
+    return (res[0][0] * a + res[0][1] * 2) % MOD
 
 
 def main(get_input=input):
@@ -61,10 +72,10 @@ def main(get_input=input):
 
 
 if __name__ == '__main__':
-    using_input_helper=True
+    using_input_helper = True
     if using_input_helper:
-        inputHelper=InputHelper()
-        cProfile.run("main(inputHelper.getInput)")  #test with performance monitor
+        inputHelper = InputHelper()
+        cProfile.run("main(inputHelper.getInput)")  # test with performance monitor
         # main(inputHelper.getInput)  #test without performance monitor
     else:
         # cProfile.run("main()")  #test with performance monitor

@@ -43,16 +43,16 @@ def solver(goodsNums, goods_list1, goods_list2):
     return Longest_Incremental_Subsequence(list2)
 
 
-def main(input_function=input):
+def main(get_input=input):
     sample_list = []
 
-    N = int(input_function())
+    N = int(get_input())
 
     # 处理输入生成测试样例list
     for i in range(N):
-        goodsNums = int(input_function())
-        goods_list1 = list(map(int, input_function().split()))
-        goods_list2 = list(map(int, input_function().split()))
+        goodsNums = int(get_input())
+        goods_list1 = list(map(int, get_input().split()))
+        goods_list2 = list(map(int, get_input().split()))
         sample_list.append(sample(goodsNums, goods_list1, goods_list2))
 
     # 逐个处理测试样例

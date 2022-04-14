@@ -1,6 +1,8 @@
 # number = list(map(int, input().split()))  # 把输入直接转成数字
 import cProfile
+
 MOD = 1000000007
+
 
 # 定义input辅助函数（从文件加载模拟输入）
 class InputHelper:
@@ -61,10 +63,10 @@ def main(get_input=input):
 
 
 if __name__ == '__main__':
-    using_input_helper=True
+    using_input_helper = True
     if using_input_helper:
-        inputHelper=InputHelper()
-        cProfile.run("main(inputHelper.getInput)")  #test with performance monitor
+        inputHelper = InputHelper()
+        cProfile.run("main(inputHelper.getInput)")  # test with performance monitor
         # main(inputHelper.getInput)  #test without performance monitor
     else:
         # cProfile.run("main()")  #test with performance monitor
