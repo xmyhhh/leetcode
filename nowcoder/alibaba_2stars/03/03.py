@@ -16,21 +16,27 @@ class InputHelper:
         return self.lines[self.currentLine]
 
 
-
-
-
 # 定义处理函数
-def solver():
+def solver(n, nums):
+
     pass
 
 
 def main(get_input=input):
-
+    sample_list = []
     # N,M=map(int,get_input().split())
-    # N = int(get_input())
+    T = int(get_input())
+    for i in range(T):
+        print(
+            solver(
+                int(get_input()),
+                list(
+                    map(int, get_input().split())
+                )
 
-    print(solver())
-    pass
+            )
+        )
+        pass
 
 
 if __name__ == '__main__':
@@ -38,7 +44,7 @@ if __name__ == '__main__':
     if using_input_helper:
         inputHelper = InputHelper()
         cProfile.run("main(inputHelper.getInput)")  # test with performance monitor
-        # main(inputHelper.getInput)  #test without performance monitor
+    # main(inputHelper.getInput)  #test without performance monitor
     else:
         # cProfile.run("main()")  #test with performance monitor
         main()  # test without performance monitor
