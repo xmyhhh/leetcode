@@ -1,7 +1,7 @@
 # number = list(map(int, input().split()))  # 把输入直接转成数字
 import cProfile
 
-MOD = 1e+3
+MOD = 998244353
 
 
 # 定义input辅助函数（从文件加载模拟输入）
@@ -16,20 +16,20 @@ class InputHelper:
         return self.lines[self.currentLine]
 
 
-
-
-
 # 定义处理函数
-def solver():
-    pass
+def solver(N, a, b, c, d):
+    def combinations(m, n):  # 排列，计算C（m n）,n是总数，m是待选数
+        assert m <= n
+        import math
+        return math.factorial(n) // (math.factorial(m) * math.factorial(n - m))
+
+    return combinations(a, N * N) * combinations(b, N * N - a) * combinations(c, N * N - a - b) % MOD
 
 
 def main(get_input=input):
+    N, a, b, c, d = map(int, get_input().split())
 
-    # N,M=map(int,get_input().split())
-    # N = int(get_input())
-
-    print(solver())
+    print(solver(N, a, b, c, d))
     pass
 
 
