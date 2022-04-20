@@ -27,28 +27,23 @@ def solver(N, nums):
     play_times = 0
     if len(nums_before) == 0:
         return 0
-    while (1):
-        i = 0
-        j = 1
-        nums_after.append(nums_before[0])
-        while i < (len(nums_before) - 1):
 
-            if j < len(nums_before) and nums_before[i] > nums_before[j]:  # 如果左边大于右边，递减，跳过
-                j += 1
+    i = 0
+    while (1):
+        while i < (len(nums_before)):
+            nums_after.append(nums_before[i])
+            while i + 1 < len(nums_before) and nums_before[i] > nums_before[i + 1]:
                 i += 1
-            else:  # 如果右边大于左边，递增，保留
-                j += 1
-                i += 1
-                nums_after.append(nums_before[i])
-        if last_nums_after_len == len(nums_after):
+            i += 1
+        # print(last_nums_after_len)
+        if len(nums_before) == len(nums_after):
             break
         else:
             play_times += 1
-            last_nums_after_len = len(nums_after)
+
         nums_before = nums_after
         nums_after = []
-        if nums_before==nums:
-            return 0
+        i=0
     return play_times
 
 
