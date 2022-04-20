@@ -29,6 +29,16 @@ def combinations(m, n):  # 排列，计算C（m n）,n是总数，m是待选数
     return math.factorial(n) // (math.factorial(m) * math.factorial(n - m))
 
 
+def fast_power(base, power):  # 快速幂
+    res = 1
+    while power > 0:
+        if power % 2 == 1:
+            res = res * base
+        power = power // 2
+        base = base * base
+    return res
+
+
 import cProfile
 
-cProfile.run("print(permutations(3,3))")
+cProfile.run("print(fast_power(3,300))")

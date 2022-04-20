@@ -1,9 +1,6 @@
 import queue
 import networkx as nx
-
 import matplotlib.pyplot as plt
-
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -34,7 +31,6 @@ def treeBuild(treeList):
             aNode.right = node2
         i += 2
     return root
-
 
 def treeDraw(node):  # 以某个节点为根画图
     def create_graph(G, node, pos={}, x=0, y=0, layer=1):
