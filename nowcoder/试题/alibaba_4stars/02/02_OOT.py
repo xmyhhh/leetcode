@@ -34,7 +34,7 @@ def solver(A, B, n):
         return num_0
     for i in range(2, n):
         a = num_1
-        num_1 = A * num_1 - B * num_0
+        num_1 = (A * (num_1))% MOD - (B * (num_0))% MOD
         num_0 = a
 
     return (A * num_1 - B * num_0) % MOD
@@ -55,9 +55,7 @@ def main(get_input=input):
     for item in sample_list:
         print(solver(item.A, item.B, item.n))
 
-    # 逐个处理测试样例
-    for item in sample_list:
-        print(solver(item.A, item.B, item.n))
+
 
 
 if __name__ == '__main__':
