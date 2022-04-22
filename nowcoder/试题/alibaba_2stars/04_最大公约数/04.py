@@ -18,7 +18,7 @@ class InputHelper:
 
 # 定义处理函数
 def solver(A, B, a, b):
-    def get_greatest_common_divisor(a, b):  ##最大公约数
+    def get_greatest_common_divisor(a, b):  ##04_最大公约数
         if a == b:
             return a
         if (a & 1) == 0 and (b & 1) == 0:
